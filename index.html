@@ -987,6 +987,28 @@
             document.getElementById('exit-modal').classList.remove('hidden');
         }
 
+        function forceCloseWindow() {
+            try {
+                window.close();
+            } catch (e) {
+                console.log("Window close blocked.");
+            }
+            try {
+                window.open('', '_self').close();
+            } catch (e) {
+                console.log("Self close blocked.");
+            }
+            document.body.innerHTML = `
+                <div class="flex items-center justify-center min-h-screen bg-black text-emerald-400 font-mono text-center p-6">
+                    <div class="space-y-4">
+                        <i class="fa-solid fa-hourglass-end text-5xl text-red-500 animate-pulse"></i>
+                        <h1 class="text-2xl font-bold text-red-400">Linha Temporal Encerrada</h1>
+                        <p class="text-sm text-slate-400">O portal foi definitivamente selado. Você já pode fechar esta aba do navegador manualmente com segurança.</p>
+                    </div>
+                </div>
+            `;
+        }
+
         function showCustomMessage(title, text) {
             alert(title + ": " + text);
         }
