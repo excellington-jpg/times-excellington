@@ -1,0 +1,799 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Times Excellington - O Mestre do Tempo</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        mystic: {
+                            dark: '#0a1410',
+                            card: '#12261d',
+                            border: '#1f4532',
+                            gold: '#d4af37',
+                            goldHover: '#e5c158',
+                            emeraldGlow: '#10b981',
+                            emeraldBright: '#34d399',
+                            emeraldDark: '#064e3b'
+                        }
+                    },
+                    boxShadow: {
+                        'time-stone': '0 0 25px rgba(16, 185, 129, 0.35)',
+                        'time-stone-lg': '0 0 45px rgba(52, 211, 153, 0.5)',
+                        'gold-glow': '0 0 20px rgba(212, 175, 55, 0.3)'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for mystical icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter & Cinzel -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at center, #0f241a 0%, #07130d 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+        .cinzel-font {
+            font-family: 'Cinzel', serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a1410;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f4532;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #10b981;
+        }
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.03); }
+        }
+        .animate-time-pulse {
+            animation: pulse-slow 4s infinite ease-in-out;
+        }
+        @keyframes portal-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .animate-portal {
+            animation: portal-spin 20s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-mystic-dark text-slate-100 flex flex-col min-h-screen selection:bg-emerald-500 selection:text-black">
+
+    <header class="border-b border-mystic-border bg-mystic-dark/80 backdrop-blur-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-400 via-emerald-600 to-mystic-dark flex items-center justify-center shadow-time-stone animate-time-pulse border-2 border-mystic-gold relative overflow-hidden">
+                    <div class="absolute inset-0 bg-[radial-gradient(circle,rgba(52,211,153,0.4)_0%,transparent_70%)] animate-portal"></div>
+                    <i class="fa-solid fa-clock text-black text-xl z-10"></i>
+                </div>
+                <div>
+                    <h1 class="cinzel-font text-2xl md:text-3xl font-bold tracking-wider text-mystic-gold drop-shadow-[0_2px_10px_rgba(212,175,55,0.4)]">
+                        Times Excellington
+                    </h1>
+                    <p class="text-xs text-emerald-400 tracking-widest uppercase font-medium">O Mestre do Tempo</p>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <button onclick="openTermsModal()" class="flex items-center space-x-2 bg-mystic-card hover:bg-mystic-border border border-mystic-gold/50 text-mystic-gold px-4 py-2 rounded-xl text-sm font-medium transition shadow-gold-glow hover:scale-105">
+                    <i class="fa-solid fa-scroll"></i>
+                    <span>Termos de Uso</span>
+                </button>
+                <button onclick="exitApp()" class="flex items-center space-x-2 bg-red-950/60 hover:bg-red-900/80 border border-red-500/50 text-red-300 px-4 py-2 rounded-xl text-sm font-medium transition hover:scale-105">
+                    <i class="fa-solid fa-power-off"></i>
+                    <span>Sair</span>
+                </button>
+            </div>
+
+
+
+<div class="flex items-center space-x-3">
+                <button onclick="openTermsModal()" class="flex items-center space-x-2 bg-mystic-card hover:bg-mystic-border border border-mystic-gold/50 text-mystic-gold px-4 py-2 rounded-xl text-sm font-medium transition shadow-gold-glow hover:scale-105">
+                    <i class="fa-solid fa-scroll"></i>
+                    <span>Termos de Uso</span>
+                </button>
+                <button onclick="exitApp()" class="flex items-center space-x-2 bg-red-950/60 hover:bg-red-900/80 border border-red-500/50 text-red-300 px-4 py-2 rounded-xl text-sm font-medium transition hover:scale-105">
+                    <i class="fa-solid fa-power-off"></i>
+                    <span>Sair</span>
+                </button>
+            </div>
+
+
+
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-8 flex flex-col gap-6">
+        
+        <div class="flex justify-center border-b border-mystic-border pb-4">
+            <div class="bg-mystic-card p-1.5 rounded-2xl border border-mystic-border flex flex-wrap justify-center gap-2 shadow-inner">
+                <button onclick="switchTab('calculator')" id="tab-calculator-btn" class="px-5 py-2.5 rounded-xl font-medium text-sm transition flex items-center space-x-2 bg-emerald-600 text-black shadow-time-stone">
+                    <i class="fa-solid fa-calculator"></i>
+                    <span>Unidades de Tempo</span>
+                </button>
+                <button onclick="switchTab('dates')" id="tab-dates-btn" class="px-5 py-2.5 rounded-xl font-medium text-sm transition flex items-center space-x-2 text-slate-300 hover:text-emerald-400 hover:bg-mystic-dark/50">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span>Datas & Atestados</span>
+                </button>
+                <button onclick="switchTab('timetravel')" id="tab-timetravel-btn" class="px-5 py-2.5 rounded-xl font-medium text-sm transition flex items-center space-x-2 text-slate-300 hover:text-emerald-400 hover:bg-mystic-dark/50">
+                    <i class="fa-solid fa-hourglass-start"></i>
+                    <span>Viagem Temporal (Passado/Futuro)</span>
+                </button>
+            </div>
+        </div>
+
+        <section id="tab-calculator" class="space-y-6">
+            <div class="bg-mystic-card/90 border border-mystic-border rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
+                <div class="absolute -right-20 -top-20 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <h2 class="cinzel-font text-xl md:text-2xl font-bold text-mystic-gold mb-2 flex items-center space-x-3">
+                    <i class="fa-solid fa-hourglass-half text-emerald-400"></i>
+                    <span>Operações com Unidades de Tempo</span>
+                </h2>
+                <p class="text-sm text-slate-400 mb-6">Realize adição, subtração, multiplicação e divisão combinando segundos, minutos, horas, dias, semanas, meses, bimestres, trimestres, semestres e anos.</p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                    
+                    <!-- Left Column: Inputs -->
+                    <div class="lg:col-span-7 space-y-5">
+                        
+                        <!-- Value 1 -->
+                        <div class="p-4 rounded-2xl bg-mystic-dark/60 border border-mystic-border space-y-3">
+                            <label class="block text-xs font-semibold uppercase text-emerald-400 tracking-wider">Primeiro Valor Temporal</label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <input type="number" id="val1" value="1" step="any" class="w-full bg-mystic-dark border border-mystic-border rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-emerald-500 font-medium text-lg">
+                                <select id="unit1" class="w-full bg-mystic-dark border border-mystic-border rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-emerald-500 font-medium">
+                                    <option value="second">Segundos</option>
+                                    <option value="minute">Minutos</option>
+                                    <option value="hour">Horas</option>
+                                    <option value="day" selected>Dias</option>
+                                    <option value="week">Semanas</option>
+                                    <option value="month">Meses (30 dias)</option>
+                                    <option value="bimester">Bimestres (60 dias)</option>
+                                    <option value="trimester">Trimestres (90 dias)</option>
+                                    <option value="semester">Semestres (180 dias)</option>
+                                    <option value="year">Anos (365 dias)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Operation Selector -->
+                        <div class="flex items-center justify-center space-x-3 py-1">
+                            <button type="button" onclick="setOperation('+')" id="op-add" class="op-btn w-12 h-12 rounded-xl bg-emerald-600 text-black font-bold text-xl flex items-center justify-center transition shadow-time-stone hover:scale-105">+</button>
+                            <button type="button" onclick="setOperation('-')" id="op-sub" class="op-btn w-12 h-12 rounded-xl bg-mystic-dark border border-mystic-border text-slate-300 font-bold text-xl flex items-center justify-center transition hover:border-emerald-500 hover:text-emerald-400 hover:scale-105">-</button>
+                            <button type="button" onclick="setOperation('*')" id="op-mul" class="op-btn w-12 h-12 rounded-xl bg-mystic-dark border border-mystic-border text-slate-300 font-bold text-xl flex items-center justify-center transition hover:border-emerald-500 hover:text-emerald-400 hover:scale-105">&times;</button>
+                            <button type="button" onclick="setOperation('/')" id="op-div" class="op-btn w-12 h-12 rounded-xl bg-mystic-dark border border-mystic-border text-slate-300 font-bold text-xl flex items-center justify-center transition hover:border-emerald-500 hover:text-emerald-400 hover:scale-105">&divide;</button>
+                        </div>
+
+                        <!-- Value 2 -->
+                        <div class="p-4 rounded-2xl bg-mystic-dark/60 border border-mystic-border space-y-3" id="val2-container">
+                            <label class="block text-xs font-semibold uppercase text-emerald-400 tracking-wider" id="val2-label">Segundo Valor Temporal</label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <input type="number" id="val2" value="12" step="any" class="w-full bg-mystic-dark border border-mystic-border rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-emerald-500 font-medium text-lg">
+                                <select id="unit2" class="w-full bg-mystic-dark border border-mystic-border rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-emerald-500 font-medium">
+                                    <option value="second">Segundos</option>
+                                    <option value="minute">Minutos</option>
+                                    <option value="hour">Horas</option>
+                                    <option value="day">Dias</option>
+                                    <option value="week" selected>Semanas</option>
+                                    <option value="month">Meses (30 dias)</option>
+                                    <option value="bimester">Bimestres (60 dias)</option>
+                                    <option value="trimester">Trimestres (90 dias)</option>
+                                    <option value="semester">Semestres (180 dias)</option>
+                                    <option value="year">Anos (365 dias)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Calculate Button -->
+                        <button onclick="calculateTime()" class="w-full py-4 rounded-2xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-400 text-black font-bold text-base uppercase tracking-wider transition shadow-time-stone hover:shadow-time-stone-lg hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
+                            <span>Manipular o Tempo &middot; Calcular</span>
+                        </button>
+                    </div>
+
+                    <!-- Right Column: Results Showcase -->
+                    <div class="lg:col-span-5 bg-mystic-dark/90 border border-mystic-border rounded-2xl p-6 flex flex-col justify-between space-y-6 shadow-inner">
+                        <div>
+                            <h3 class="text-xs font-bold uppercase tracking-widest text-mystic-gold mb-3 flex items-center space-x-2">
+                                <i class="fa-solid fa-atom text-emerald-400"></i>
+                                <span>Resultado Dimensional</span>
+                            </h3>
+                            <div id="calc-result-main" class="text-2xl md:text-3xl font-extrabold text-emerald-300 font-mono break-words mb-2">
+                                --
+                            </div>
+                            <p id="calc-result-sub" class="text-xs text-slate-400">Insira os valores e selecione a operação desejada.</p>
+                        </div>
+
+                        <div class="border-t border-mystic-border pt-4">
+                            <h4 class="text-xs font-semibold uppercase text-slate-400 mb-3 tracking-wider">Conversão Detalhada</h4>
+                            <div id="calc-breakdown" class="space-y-2 text-sm font-mono text-slate-300">
+                                <div class="flex justify-between py-1 border-b border-mystic-border/50">
+                                    <span class="text-slate-400">Anos:</span> <span id="res-year">0</span>
+                                </div>
+                                <div class="flex justify-between py-1 border-b border-mystic-border/50">
+                                    <span class="text-slate-400">Meses (30d):</span> <span id="res-month">0</span>
+                                </div>
+                                <div class="flex justify-between py-1 border-b border-mystic-border/50">
+                                    <span class="text-slate-400">Dias:</span> <span id="res-day">0</span>
+                                </div>
+                                <div class="flex justify-between py-1 border-b border-mystic-border/50">
+                                    <span class="text-slate-400">Horas:</span> <span id="res-hour">0</span>
+                                </div>
+                                <div class="flex justify-between py-1 border-b border-mystic-border/50">
+                                    <span class="text-slate-400">Minutos:</span> <span id="res-minute">0</span>
+                                </div>
+                                <div class="flex justify-between py-1">
+                                    <span class="text-slate-400">Segundos:</span> <span id="res-second">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-dates" class="space-y-6 hidden">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- Tool A: Difference between two dates -->
+                <div class="bg-mystic-card/90 border border-mystic-border rounded-3xl p-6 md:p-8 shadow-2xl flex flex-col justify-between">
+                    <div>
+                        <h2 class="cinzel-font text-xl font-bold text-mystic-gold mb-2 flex items-center space-x-2">
+                            <i class="fa-solid fa-calendar-minus text-emerald-400"></i>
+                            <span>Período entre Duas Datas</span>
+                        </h2>
+                        <p class="text-xs text-slate-400 mb-6">Calcule a exata distância temporal em dias, semanas, meses e anos entre dois momentos.</p>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-emerald-400 tracking-wider mb-1">Data Inicial</label>
+                                <input type="date" id="diff-start-date" class="w-full bg-mystic-dark border border-mystic-border rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-emerald-500 font-medium">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-emerald-400 tracking-wider mb-1">Data Final</label>
+                                <input type="date" id="diff-end-date" class="w-full bg-mystic-dark border border-mystic-border rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-emerald-500 font-medium">
+                            </div>
+                            <div class="flex items-center space-x-2 pt-2">
+                                <input type="checkbox" id="diff-inclusive" class="w-4 h-4 accent-emerald-500 rounded bg-mystic-dark border-mystic-border">
+                                <label for="diff-inclusive" class="text-xs text-slate-300">Incluir o primeiro dia na contagem (ex: atestados a partir do próprio dia)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-6 border-t border-mystic-border">
+                        <button onclick="calculateDateDifference()" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-black font-bold uppercase tracking-wider text-sm transition shadow-time-stone mb-4 flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-calculator"></i>
+                            <span>Calcular Período</span>
+                        </button>
+                        <div id="diff-result" class="p-4 rounded-2xl bg-mystic-dark/80 border border-mystic-border text-center">
+                            <span class="text-xs text-slate-400 block mb-1">Resultado do Intervalo:</span>
+                            <span class="text-xl font-bold text-emerald-300 font-mono" id="diff-result-text">Aguardando dados...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tool B: Final Date Calculator (Atestado / Afastamento) -->
+                <div class="bg-mystic-card/90 border border-mystic-border rounded-3xl p-6 md:p-8 shadow-2xl flex flex-col justify-between">
+                    <div>
+                        <h2 class="cinzel-font text-xl font-bold text-mystic-gold mb-2 flex items-center space-x-2">
+                            <i class="fa-solid fa-calendar-plus text-emerald-400"></i>
+                            <span>Cálculo de Data Final (Atestado / Afastamento)</span>
+                        </h2>
+                        <p class="text-xs text-slate-400 mb-6">Defina a data de retorno ou término adicionando dias de afastamento à data inicial.</p>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-emerald-400 tracking-wider mb-1">Data Inicial (Início do Afastamento)</label>
+                                <input type="date" id="atest-start-date" class="w-full bg-mystic-dark border border-mystic-border rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-emerald-500 font-medium">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-emerald-400 tracking-wider mb-1">Quantidade de Dias de Afastamento</label>
+                                <input type="number" id="atest-days" min="1" value="3" class="w-full bg-mystic-dark border border-mystic-border rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-emerald-500 font-medium text-lg">
+                            </div>
+                            <div class="flex items-center space-x-2 pt-2">
+                                <input type="checkbox" id="atest-subtract-one" checked class="w-4 h-4 accent-emerald-500 rounded bg-mystic-dark border-mystic-border">
+                                <label for="atest-subtract-one" class="text-xs text-slate-300">Regra de Atestado Padrão (ex: 3 dias a partir de seg = seg, ter, qua; retorna na qui)</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-6 border-t border-mystic-border">
+                        <button onclick="calculateFinalDate()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-mystic-gold to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-black font-bold uppercase tracking-wider text-sm transition shadow-gold-glow mb-4 flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-calendar-check"></i>
+                            <span>Calcular Data de Retorno</span>
+                        </button>
+                        <div id="atest-result" class="p-4 rounded-2xl bg-mystic-dark/80 border border-mystic-border text-center">
+                            <span class="text-xs text-slate-400 block mb-1">Data de Retorno / Término:</span>
+                            <span class="text-xl font-bold text-mystic-gold font-mono" id="atest-result-text">Aguardando dados...</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="tab-timetravel" class="space-y-6 hidden">
+            <div class="bg-mystic-card/90 border border-mystic-border rounded-3xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
+                <div class="absolute -left-20 -bottom-20 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <h2 class="cinzel-font text-xl md:text-2xl font-bold text-mystic-gold mb-2 flex items-center space-x-3">
+                    <i class="fa-solid fa-hourglass-start text-emerald-400"></i>
+                    <span>Simulador de Viagem Temporal (Passado & Futuro)</span>
+                </h2>
+                <p class="text-sm text-slate-400 mb-6">Viaje para o futuro adicionando tempo ou retorne ao passado subtraindo tempo a partir de qualquer data de referência.</p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                    
+                    <!-- Left: Controls -->
+                    <div class="lg:col-span-6 space-y-5">
+                        <div class="p-4 rounded-2xl bg-mystic-dark/60 border border-mystic-border space-y-3">
+                            <label class="block text-xs font-semibold uppercase text-emerald-400 tracking-wider">Data & Momento de Referência</label>
+                            <input type="datetime-local" id="tt-ref-datetime" class="w-full bg-mystic-dark border border-mystic-border rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-emerald-500 font-medium text-base">
+                            <div class="flex items-center space-x-2 pt-1">
+                                <input type="checkbox" id="tt-inclusive" onchange="executeTimeTravel()" class="w-4 h-4 accent-emerald-500 rounded bg-mystic-dark border-mystic-border">
+                                <label for="tt-inclusive" class="text-xs text-slate-300">Incluir a data/momento selecionado na contagem (iniciar a partir do próprio dia)</label>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <button type="button" onclick="setTravelDirection('future')" id="dir-future-btn" class="py-3 px-4 rounded-xl border border-emerald-500 bg-emerald-600 text-black font-bold text-sm transition shadow-time-stone flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-forward-fast"></i>
+                                <span>Salto para o Futuro (+)</span>
+                            </button>
+                            <button type="button" onclick="setTravelDirection('past')" id="dir-past-btn" class="py-3 px-4 rounded-xl border border-mystic-border bg-mystic-dark text-slate-300 font-bold text-sm transition hover:border-emerald-500 hover:text-emerald-400 flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-backward-fast"></i>
+                                <span>Salto para o Passado (-)</span>
+                            </button>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-mystic-dark/60 border border-mystic-border space-y-3">
+                            <label class="block text-xs font-semibold uppercase text-emerald-400 tracking-wider" id="tt-amount-label">Quantidade de Tempo a Avançar</label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <input type="number" id="tt-amount" value="5" min="0" step="any" class="w-full bg-mystic-dark border border-mystic-border rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-emerald-500 font-medium text-lg">
+                                <select id="tt-unit" class="w-full bg-mystic-dark border border-mystic-border rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-emerald-500 font-medium">
+                                    <option value="second">Segundos</option>
+                                    <option value="minute">Minutos</option>
+                                    <option value="hour">Horas</option>
+                                    <option value="day" selected>Dias</option>
+                                    <option value="week">Semanas</option>
+                                    <option value="month">Meses (30 dias)</option>
+                                    <option value="year">Anos (365 dias)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button onclick="executeTimeTravel()" class="w-full py-4 rounded-2xl bg-gradient-to-r from-emerald-600 via-emerald-500 to-emerald-400 text-black font-bold text-base uppercase tracking-wider transition shadow-time-stone hover:shadow-time-stone-lg hover:scale-[1.01] flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-bolt text-lg"></i>
+                            <span>Ativar Portal Temporal</span>
+                        </button>
+                    </div>
+
+                    <!-- Right: Results & Multiverse Report -->
+                    <div class="lg:col-span-6 bg-mystic-dark/90 border border-mystic-border rounded-2xl p-6 flex flex-col justify-between space-y-6 shadow-inner min-h-[380px]">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-xs font-bold uppercase tracking-widest text-mystic-gold flex items-center space-x-2">
+                                    <i class="fa-solid fa-compass text-emerald-400"></i>
+                                    <span>Destino no Multiverso</span>
+                                </h3>
+                                <span id="tt-badge-mode" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-950 text-emerald-300 border border-emerald-500/40">FUTURO</span>
+                            </div>
+                            <div id="tt-result-date" class="text-xl md:text-2xl font-extrabold text-emerald-300 font-mono break-words mb-3">
+                                --
+                            </div>
+                            <p id="tt-result-desc" class="text-xs text-slate-400 leading-relaxed">
+                                Selecione o momento de referência, a direção da viagem e o salto temporal para recalcular a linha temporal.
+                            </p>
+                        </div>
+
+                        <div class="border-t border-mystic-border pt-4 space-y-3">
+                            <h4 class="text-xs font-semibold uppercase text-slate-400 tracking-wider">Métricas da Linha Temporal Alterada</h4>
+                            <div class="grid grid-cols-2 gap-3 font-mono text-xs">
+                                <div class="bg-mystic-card p-3 rounded-xl border border-mystic-border">
+                                    <span class="text-slate-400 block mb-1">Diferença Total:</span>
+                                    <span id="tt-stat-seconds" class="text-emerald-400 font-bold text-sm">0 s</span>
+                                </div>
+                                <div class="bg-mystic-card p-3 rounded-xl border border-mystic-border">
+                                    <span class="text-slate-400 block mb-1">Equivalente em Dias:</span>
+                                    <span id="tt-stat-days" class="text-mystic-gold font-bold text-sm">0 dias</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-mystic-border bg-mystic-dark/80 py-6 text-center text-xs text-slate-500">
+        <p>Times Excellington &copy; 2026 &middot; Manipulado pela Joia do Tempo.</p>
+    </footer>
+
+    <!-- TERMS OF USE MODAL -->
+    <div id="terms-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-mystic-card border border-mystic-gold/60 max-w-2xl w-full rounded-3xl p-6 md:p-8 shadow-2xl relative space-y-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-mystic-border pb-4">
+                <h3 class="cinzel-font text-xl font-bold text-mystic-gold flex items-center space-x-2">
+                    <i class="fa-solid fa-scroll text-emerald-400"></i>
+                    <span>Termos de Uso e Responsabilidade</span>
+                </h3>
+                <button onclick="closeTermsModal()" class="w-8 h-8 rounded-full bg-mystic-dark border border-mystic-border flex items-center justify-center text-slate-400 hover:text-emerald-400 transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <div class="space-y-3 text-sm text-slate-300 leading-relaxed">
+                <p><strong>1. Aceitação dos Termos:</strong> Ao utilizar o aplicativo <em>Times Excellington</em>, você concorda que o tempo é uma dimensão fluida e que cálculos temporais, projeções de atestados médicos e simulações de saltos para o passado ou futuro são fornecidos para fins informativos e de planejamento avançado.</p>
+                <p><strong>2. Isenção de Responsabilidade Médica e Temporal:</strong> As projeções de datas de afastamento e retorno baseadas em dias de atestado servem como estimativas práticas. O usuário e os profissionais responsáveis devem sempre validar as diretrizes oficiais de recursos humanos e legislações trabalhistas. O criador não se responsabiliza por paradoxos temporais decorrentes de viagens ao passado.</p>
+                <p><strong>3. Uso da Joia do Tempo:</strong> O operador compromete-se a não utilizar as funções matemáticas deste sistema para alterar o tecido da realidade sem o devido consentimento dos Mestres do Tempo.</p>
+            </div>
+
+            <div class="pt-4 border-t border-mystic-border flex justify-end">
+                <button onclick="closeTermsModal()" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-black font-bold text-sm transition">
+                    Compreendido e Aceito
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXIT MESSAGE / PORTAL CLOSED MODAL -->
+    <div id="exit-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-mystic-card border border-red-500/60 max-w-md w-full rounded-3xl p-8 shadow-2xl text-center space-y-6">
+            <div class="w-16 h-16 rounded-full bg-red-950 border-2 border-red-500 flex items-center justify-center mx-auto text-red-400 text-2xl shadow-lg">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <div>
+                <h3 class="cinzel-font text-2xl font-bold text-red-400 mb-2">Portal Fechado</h3>
+                <p class="text-sm text-slate-300">O tempo foi congelado e a janela do multiverso foi encerrada com segurança. Você já pode fechar esta aba do navegador.</p>
+            </div>
+            <button onclick="window.location.reload()" class="w-full py-3 rounded-xl bg-mystic-dark border border-mystic-border text-emerald-400 hover:bg-mystic-border font-bold text-sm transition">
+                Reabrir Portal / Recarregar
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentOperation = '+';
+        let travelDirection = 'future';
+
+        // Conversion factors to seconds
+        const unitToSeconds = {
+            second: 1,
+            minute: 60,
+            hour: 3600,
+            day: 86400,
+            week: 604800,        // 7 days
+            month: 2592000,      // 30 days
+            bimester: 5184000,   // 60 days
+            trimester: 7776000,  // 90 days
+            semester: 15552000,  // 180 days
+            year: 31536000       // 365 days
+        };
+
+        function switchTab(tabName) {
+            const calcBtn = document.getElementById('tab-calculator-btn');
+            const datesBtn = document.getElementById('tab-dates-btn');
+            const ttBtn = document.getElementById('tab-timetravel-btn');
+            
+            const calcSec = document.getElementById('tab-calculator');
+            const datesSec = document.getElementById('tab-dates');
+            const ttSec = document.getElementById('tab-timetravel');
+
+            [calcBtn, datesBtn, ttBtn].forEach(btn => {
+                btn.className = "px-5 py-2.5 rounded-xl font-medium text-sm transition flex items-center space-x-2 text-slate-300 hover:text-emerald-400 hover:bg-mystic-dark/50";
+            });
+            [calcSec, datesSec, ttSec].forEach(sec => sec.classList.add('hidden'));
+
+            if (tabName === 'calculator') {
+                calcBtn.className = "px-5 py-2.5 rounded-xl font-medium text-sm transition flex items-center space-x-2 bg-emerald-600 text-black shadow-time-stone";
+                calcSec.classList.remove('hidden');
+            } else if (tabName === 'dates') {
+                datesBtn.className = "px-5 py-2.5 rounded-xl font-medium text-sm transition flex items-center space-x-2 bg-emerald-600 text-black shadow-time-stone";
+                datesSec.classList.remove('hidden');
+            } else if (tabName === 'timetravel') {
+                ttBtn.className = "px-5 py-2.5 rounded-xl font-medium text-sm transition flex items-center space-x-2 bg-emerald-600 text-black shadow-time-stone";
+                ttSec.classList.remove('hidden');
+            }
+        }
+
+        function setOperation(op) {
+            currentOperation = op;
+            const btnAdd = document.getElementById('op-add');
+            const btnSub = document.getElementById('op-sub');
+            const btnMul = document.getElementById('op-mul');
+            const btnDiv = document.getElementById('op-div');
+            
+            [btnAdd, btnSub, btnMul, btnDiv].forEach(b => {
+                b.className = "op-btn w-12 h-12 rounded-xl bg-mystic-dark border border-mystic-border text-slate-300 font-bold text-xl flex items-center justify-center transition hover:border-emerald-500 hover:text-emerald-400 hover:scale-105";
+            });
+
+            const activeBtn = op === '+' ? btnAdd : op === '-' ? btnSub : op === '*' ? btnMul : btnDiv;
+            activeBtn.className = "op-btn w-12 h-12 rounded-xl bg-emerald-600 text-black font-bold text-xl flex items-center justify-center transition shadow-time-stone hover:scale-105";
+
+            const val2Container = document.getElementById('val2-container');
+            const val2Label = document.getElementById('val2-label');
+            const unit2Select = document.getElementById('unit2');
+
+            if (op === '*' || op === '/') {
+                val2Label.textContent = "Fator Escalar (Multiplicador / Divisor)";
+                unit2Select.style.display = 'none';
+            } else {
+                val2Label.textContent = "Segundo Valor Temporal";
+                unit2Select.style.display = 'block';
+            }
+        }
+
+        function calculateTime() {
+            const val1 = parseFloat(document.getElementById('val1').value) || 0;
+            const unit1 = document.getElementById('unit1').value;
+            const val2 = parseFloat(document.getElementById('val2').value) || 0;
+            const unit2 = document.getElementById('unit2').value;
+
+            let resultSeconds = 0;
+            const sec1 = val1 * unitToSeconds[unit1];
+
+            if (currentOperation === '+') {
+                const sec2 = val2 * unitToSeconds[unit2];
+                resultSeconds = sec1 + sec2;
+            } else if (currentOperation === '-') {
+                const sec2 = val2 * unitToSeconds[unit2];
+                resultSeconds = sec1 - sec2;
+            } else if (currentOperation === '*') {
+                resultSeconds = sec1 * val2;
+            } else if (currentOperation === '/') {
+                if (val2 === 0) {
+                    showCustomMessage("Erro Dimensional", "Não é possível dividir o tempo por zero!");
+                    return;
+                }
+                resultSeconds = sec1 / val2;
+            }
+
+            displayTimeResult(resultSeconds);
+        }
+
+        function displayTimeResult(totalSeconds) {
+            const isNegative = totalSeconds < 0;
+            const absSec = Math.abs(totalSeconds);
+
+            const years = Math.floor(absSec / 31536000);
+            let rem = absSec % 31536000;
+            const months = Math.floor(rem / 2592000);
+            rem %= 2592000;
+            const days = Math.floor(rem / 86400);
+            rem %= 86400;
+            const hours = Math.floor(rem / 3600);
+            rem %= 3600;
+            const minutes = Math.floor(rem / 60);
+            const seconds = rem % 60;
+
+            const signPrefix = isNegative ? '- ' : '';
+            
+            let mainStr = "";
+            if (years > 0) mainStr += `${years} ano(s) `;
+            if (months > 0 || years > 0) mainStr += `${months} mês(es) `;
+            mainStr += `${days}d ${hours}h ${minutes}m ${seconds.toFixed(1)}s`;
+            if (mainStr.trim() === "") mainStr = "0 segundos";
+
+            document.getElementById('calc-result-main').textContent = signPrefix + mainStr;
+            document.getElementById('calc-result-sub').textContent = `Total equivalente a ${totalSeconds.toLocaleString('pt-BR', {maximumFractionDigits: 2})} segundos.`;
+
+            document.getElementById('res-year').textContent = (isNegative ? '-' : '') + (absSec / 31536000).toFixed(4);
+            document.getElementById('res-month').textContent = (isNegative ? '-' : '') + (absSec / 2592000).toFixed(4);
+            document.getElementById('res-day').textContent = (isNegative ? '-' : '') + (absSec / 86400).toFixed(2);
+            document.getElementById('res-hour').textContent = (isNegative ? '-' : '') + (absSec / 3600).toFixed(2);
+            document.getElementById('res-minute').textContent = (isNegative ? '-' : '') + (absSec / 60).toFixed(2);
+            document.getElementById('res-second').textContent = (isNegative ? '-' : '') + absSec.toFixed(2);
+        }
+
+        function calculateDateDifference() {
+            const startStr = document.getElementById('diff-start-date').value;
+            const endStr = document.getElementById('diff-end-date').value;
+            const inclusive = document.getElementById('diff-inclusive').checked;
+
+            if (!startStr || !endStr) {
+                document.getElementById('diff-result-text').textContent = "Por favor, selecione ambas as datas.";
+                return;
+            }
+
+            const startDate = new Date(startStr);
+            const endDate = new Date(endStr);
+
+            const diffTime = endDate - startDate;
+            let diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+
+            if (diffDays < 0) {
+                document.getElementById('diff-result-text').textContent = "A data final é anterior à inicial.";
+                return;
+            }
+
+            if (inclusive) {
+                diffDays += 1;
+            }
+
+            const weeks = (diffDays / 7).toFixed(1);
+            const months = (diffDays / 30).toFixed(1);
+
+            document.getElementById('diff-result-text').innerHTML = `
+                <span class="text-2xl text-emerald-300 font-extrabold">${diffDays} dia(s)</span>
+                <div class="text-xs text-slate-400 mt-1">Aproximadamente ${weeks} semanas ou ${months} meses (${inclusive ? 'incluindo' : 'excluindo'} o 1º dia)</div>
+            `;
+        }
+
+        function calculateFinalDate() {
+            const startStr = document.getElementById('atest-start-date').value;
+            const daysCount = parseInt(document.getElementById('atest-days').value) || 0;
+            const subtractOne = document.getElementById('atest-subtract-one').checked;
+
+            if (!startStr) {
+                document.getElementById('atest-result-text').textContent = "Por favor, selecione a data inicial.";
+                return;
+            }
+
+            if (daysCount <= 0) {
+                document.getElementById('atest-result-text').textContent = "Insira uma quantidade de dias válida.";
+                return;
+            }
+
+            const startDate = new Date(startStr + 'T00:00:00');
+            const addDays = subtractOne ? daysCount - 1 : daysCount;
+            const endDate = new Date(startDate);
+            endDate.setDate(startDate.getDate() + addDays);
+
+            const returnDate = new Date(endDate);
+            returnDate.setDate(endDate.getDate() + 1);
+
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedEndDate = endDate.toLocaleDateString('pt-BR', options);
+            const formattedReturnDate = returnDate.toLocaleDateString('pt-BR', options);
+
+            document.getElementById('atest-result-text').innerHTML = `
+                <div class="text-lg font-bold text-mystic-gold">Término: ${formattedEndDate}</div>
+                <div class="text-sm font-semibold text-emerald-300 mt-1">Retorno ao Trabalho: ${formattedReturnDate}</div>
+            `;
+        }
+
+        function setTravelDirection(dir) {
+            travelDirection = dir;
+            const btnFuture = document.getElementById('dir-future-btn');
+            const btnPast = document.getElementById('dir-past-btn');
+            const badge = document.getElementById('tt-badge-mode');
+            const label = document.getElementById('tt-amount-label');
+
+            if (dir === 'future') {
+                btnFuture.className = "py-3 px-4 rounded-xl border border-emerald-500 bg-emerald-600 text-black font-bold text-sm transition shadow-time-stone flex items-center justify-center space-x-2";
+                btnPast.className = "py-3 px-4 rounded-xl border border-mystic-border bg-mystic-dark text-slate-300 font-bold text-sm transition hover:border-emerald-500 hover:text-emerald-400 flex items-center justify-center space-x-2";
+                badge.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-950 text-emerald-300 border border-emerald-500/40";
+                badge.textContent = "FUTURO (+)";
+                label.textContent = "Quantidade de Tempo a Avançar";
+            } else {
+                btnPast.className = "py-3 px-4 rounded-xl border border-emerald-500 bg-emerald-600 text-black font-bold text-sm transition shadow-time-stone flex items-center justify-center space-x-2";
+                btnFuture.className = "py-3 px-4 rounded-xl border border-mystic-border bg-mystic-dark text-slate-300 font-bold text-sm transition hover:border-emerald-500 hover:text-emerald-400 flex items-center justify-center space-x-2";
+                badge.className = "px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-950 text-amber-300 border border-amber-500/40";
+                badge.textContent = "PASSADO (-)";
+                label.textContent = "Quantidade de Tempo a Retornar";
+            }
+        }
+
+        function executeTimeTravel() {
+            const refInput = document.getElementById('tt-ref-datetime').value;
+            const amount = parseFloat(document.getElementById('tt-amount').value) || 0;
+            const unit = document.getElementById('tt-unit').value;
+            const inclusive = document.getElementById('tt-inclusive') ? document.getElementById('tt-inclusive').checked : false;
+
+            if (!refInput) {
+                showCustomMessage("Atenção", "Por favor, selecione a data e horário de referência.");
+                return;
+            }
+
+            let effectiveAmount = amount;
+            if (inclusive && ['day', 'week', 'month', 'year'].includes(unit) && amount > 0) {
+                effectiveAmount = Math.max(0, amount - 1);
+            }
+
+            const refDate = new Date(refInput);
+            const unitSecs = unitToSeconds[unit];
+            let deltaSecs = effectiveAmount * unitSecs;
+
+            if (travelDirection === 'past') {
+                deltaSecs = -deltaSecs;
+            }
+
+            const targetTimestamp = refDate.getTime() + (deltaSecs * 1000);
+            const targetDate = new Date(targetTimestamp);
+
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric', 
+                hour: '2-digit', 
+                minute: '2-digit',
+                second: '2-digit'
+            };
+            const formattedTarget = targetDate.toLocaleDateString('pt-BR', options);
+
+            const absDelta = Math.abs(deltaSecs);
+            const daysEquivalent = (absDelta / 86400).toFixed(2);
+
+            document.getElementById('tt-result-date').textContent = formattedTarget;
+            const inclusiveNote = inclusive && ['day', 'week', 'month', 'year'].includes(unit) ? ` (Contagem inclusiva de ${amount} ${unit}(s))` : '';
+            document.getElementById('tt-result-desc').textContent = travelDirection === 'future'
+                ? `Salto temporal concluído com sucesso para o futuro. O portal avançou ${amount} ${unit}(s)${inclusiveNote} a partir da referência.`
+                : `Viagem ao passado concluída com sucesso. O portal recuou ${amount} ${unit}(s)${inclusiveNote} no tecido da linha temporal.`;
+
+            document.getElementById('tt-stat-seconds').textContent = `${deltaSecs.toLocaleString('pt-BR')} s`;
+            document.getElementById('tt-stat-days').textContent = `${travelDirection === 'future' ? '+' : '-'}${daysEquivalent} dias`;
+        }
+
+        function openTermsModal() {
+            document.getElementById('terms-modal').classList.remove('hidden');
+        }
+
+        function closeTermsModal() {
+            document.getElementById('terms-modal').classList.add('hidden');
+        }
+
+        function exitApp() {
+            try {
+                window.close();
+            } catch (e) {
+                console.log("Window close blocked.");
+            }
+            document.getElementById('exit-modal').classList.remove('hidden');
+        }
+
+        function showCustomMessage(title, text) {
+            alert(title + ": " + text);
+        }
+
+        // Set default dates and datetime on load
+        window.onload = function() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            
+            const localDatetime = `${year}-${month}-${day}T${hours}:${minutes}`;
+            const todayStr = `${year}-${month}-${day}`;
+            const nextWeekDate = new Date(now.getTime() + 7 * 86400000);
+            const nextWeekStr = nextWeekDate.toISOString().split('T')[0];
+
+            if(document.getElementById('diff-start-date')) document.getElementById('diff-start-date').value = todayStr;
+            if(document.getElementById('diff-end-date')) document.getElementById('diff-end-date').value = nextWeekStr;
+            if(document.getElementById('atest-start-date')) document.getElementById('atest-start-date').value = todayStr;
+            if(document.getElementById('tt-ref-datetime')) document.getElementById('tt-ref-datetime').value = localDatetime;
+
+            // Run initial calculations
+            calculateTime();
+            executeTimeTravel();
+        };
+    </script>
+</body>
+</html>
+```
