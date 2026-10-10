@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark">
 <head>
@@ -47,7 +46,6 @@
         .cinzel-font {
             font-family: 'Cinzel', serif;
         }
-        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -94,81 +92,27 @@
                 </div>
             </div>
 
-
-
-            
-
-                       <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-3">
+                <div class="flex items-center gap-2 mt-0.5">
+                    <span id="user-display-tag" class="text-xs font-semibold text-indigo-300 hidden"></span>
+                    <button onclick="openUsernameModal()" class="text-[10px] text-indigo-400 hover:text-indigo-300 underline hidden" id="edit-user-btn">Editar</button>
+                </div>
 
                 <button onclick="openTermsModal()" class="flex items-center space-x-2 bg-mystic-card hover:bg-mystic-border border border-mystic-gold/50 text-mystic-gold px-4 py-2 rounded-xl text-sm font-medium transition shadow-gold-glow hover:scale-105">
-
                     <i class="fa-solid fa-scroll"></i>
-
                     <span>Termos de Uso</span>
+                </button>
 
+                <!-- Ícone Ativação Pix -->
+                <button onclick="openActivationModal(false)" class="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-emerald-400 rounded-xl text-xs font-medium border border-slate-800 transition" title="Renovação Mensal Pix">
+                    <i class="fa-solid fa-key"></i> Ativação
                 </button>
 
                 <button onclick="exitApp()" class="flex items-center space-x-2 bg-red-950/60 hover:bg-red-900/80 border border-red-500/50 text-red-300 px-4 py-2 rounded-xl text-sm font-medium transition hover:scale-105">
-
                     <i class="fa-solid fa-power-off"></i>
-
                     <span>Sair</span>
-
                 </button>
-
-
-
-
-
-
-
-                
-
             </div>
-
-
-
-
-
-
-
-<div class="flex items-center space-x-3">
-
-
-
-
-
-
-
-
-
-        <div class="flex items-center gap-2 mt-0.5">
-
-                        <span id="user-display-tag" class="text-xs font-semibold text-indigo-300 hidden"></span>
-
-      <button onclick="openUsernameModal()" class="text-[10px] text-indigo-400 hover:text-indigo-300 underline hidden" id="edit-user-btn">Editar</button>
-
-     
-
-        </div>
-
-
-
-
-
-                    <!-- Ícone Ativação Pix -->
-
-                <button onclick="toggleActivationModal()" class="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-emerald-400 rounded-xl text-xs font-medium border border-slate-800 transition" title="Renovação Mensal Pix">
-
-                    <i class="fa-solid fa-key"></i>
-
-                </button>
-
-
-
-
-            
-            
         </div>
     </header>
 
@@ -205,8 +149,6 @@
                     
                     <!-- Left Column: Inputs -->
                     <div class="lg:col-span-7 space-y-5">
-                        
-                        <!-- Value 1 -->
                         <div class="p-4 rounded-2xl bg-mystic-dark/60 border border-mystic-border space-y-3">
                             <label class="block text-xs font-semibold uppercase text-emerald-400 tracking-wider">Primeiro Valor Temporal</label>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -304,10 +246,8 @@
         </section>
 
         <section id="tab-dates" class="space-y-6 hidden">
-            
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                
-                <!-- Tool A: Difference between two dates -->
+                <!-- Tool A -->
                 <div class="bg-mystic-card/90 border border-mystic-border rounded-3xl p-6 md:p-8 shadow-2xl flex flex-col justify-between">
                     <div>
                         <h2 class="cinzel-font text-xl font-bold text-mystic-gold mb-2 flex items-center space-x-2">
@@ -344,7 +284,7 @@
                     </div>
                 </div>
 
-                <!-- Tool B: Final Date Calculator (Atestado / Afastamento) -->
+                <!-- Tool B -->
                 <div class="bg-mystic-card/90 border border-mystic-border rounded-3xl p-6 md:p-8 shadow-2xl flex flex-col justify-between">
                     <div>
                         <h2 class="cinzel-font text-xl font-bold text-mystic-gold mb-2 flex items-center space-x-2">
@@ -380,7 +320,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
@@ -395,8 +334,6 @@
                 <p class="text-sm text-slate-400 mb-6">Dobre o tecido da realidade! Viaje para o futuro adicionando tempo ou retorne ao passado subtraindo tempo a partir de qualquer data de referência.</p>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                    
-                    <!-- Left: Controls -->
                     <div class="lg:col-span-6 space-y-5">
                         <div class="p-4 rounded-2xl bg-mystic-dark/60 border border-mystic-border space-y-3">
                             <label class="block text-xs font-semibold uppercase text-emerald-400 tracking-wider">Data & Momento de Referência</label>
@@ -440,7 +377,6 @@
                         </button>
                     </div>
 
-                    <!-- Right: Results & Multiverse Report -->
                     <div class="lg:col-span-6 bg-mystic-dark/90 border border-mystic-border rounded-2xl p-6 flex flex-col justify-between space-y-6 shadow-inner min-h-[380px]">
                         <div>
                             <div class="flex items-center justify-between mb-3">
@@ -472,7 +408,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -533,11 +468,7 @@
         </div>
     </div>
 
-
-
-
-
-            <!-- MODAL: Cadastro de Usuário -->
+    <!-- MODAL: Cadastro de Usuário -->
     <div id="username-modal" class="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
         <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 max-w-sm w-full flex flex-col shadow-2xl">
             <h3 class="text-lg font-bold mb-1 text-white flex items-center gap-2">
@@ -565,7 +496,7 @@
                 <h3 class="font-bold text-emerald-400 text-base flex items-center gap-2">
                     <i class="fa-solid fa-heart text-emerald-500"></i> Renovação Mensal Pix
                 </h3>
-                <button onclick="toggleActivationModal()" class="text-slate-400 hover:text-white p-1">
+                <button id="activation-close-btn" onclick="toggleActivationModal()" class="text-slate-400 hover:text-white p-1">
                     <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
             </div>
@@ -595,7 +526,7 @@
             </div>
 
             <div class="space-y-2 pt-1 border-t border-slate-800">
-                <label class="block text-xs font-medium text-slate-300">Código de Ativação (10 dígitos):</label>
+                <label class="block text-xs font-medium text-slate-300">Código de Ativação (Gerado pelo Admin):</label>
                 <input type="text" id="activation-code-input" placeholder="Digite o código de liberação" class="w-full bg-slate-950 border border-slate-800 focus:border-indigo-500 text-white text-xs rounded-lg p-2.5 font-mono outline-none">
                 <button onclick="validateActivationCode()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs py-2.5 rounded-lg transition-all shadow-md shadow-indigo-600/30">
                     Ativar Aplicativo
@@ -603,20 +534,13 @@
             </div>
         </div>
     </div>
-        
-
-
-
-
-        
 
     <script>
-
-
-                // --- CONSTANTES DE ARMAZENAMENTO E LICENCIAMENTO ---
+        // --- CONSTANTES DE ARMAZENAMENTO E LICENCIAMENTO ---
         const USERNAME_KEY = 'excellington_times_username_v1';
         const EXPIRATION_KEY = 'excellington_times_expiration_v1';
         const PIX_KEY = '16250510850';
+        let isAppForcedBlocked = false;
 
         window.addEventListener('DOMContentLoaded', () => {
             checkAppAccess();
@@ -632,7 +556,6 @@
                 return;
             }
 
-            // Exibir nome do usuário abaixo do subtítulo
             const userTag = document.getElementById('user-display-tag');
             const editBtn = document.getElementById('edit-user-btn');
             userTag.textContent = `• Usuário: ${username}`;
@@ -643,42 +566,34 @@
             const now = Date.now();
 
             if (!expiration || now > parseInt(expiration)) {
-                toggleActivationModal();
+                openActivationModal(true); // Bloqueio forçado por expiração
             }
         }
 
-        function openUsernameModal() {
-            const currentName = localStorage.getItem(USERNAME_KEY) || '';
-            document.getElementById('register-username-input').value = currentName;
-            document.getElementById('cancel-username-btn').classList.remove('hidden');
-            document.getElementById('username-modal').classList.remove('hidden');
-        }
-
-        function closeUsernameModal() {
-            document.getElementById('username-modal').classList.add('hidden');
-        }
-
-        function handleUsernameSubmit(e) {
-            e.preventDefault();
-            const nameInput = document.getElementById('register-username-input').value.trim();
-            if (!nameInput) return;
-
-            const isFirstTime = !localStorage.getItem(USERNAME_KEY);
-            localStorage.setItem(USERNAME_KEY, nameInput);
-            closeUsernameModal();
-
-            if (isFirstTime) {
-                const initialTrial = Date.now() + (30 * 24 * 60 * 60 * 1000); // 30 dias iniciais
-                localStorage.setItem(EXPIRATION_KEY, initialTrial.toString());
+        function openActivationModal(forced = false) {
+            isAppForcedBlocked = forced;
+            const modal = document.getElementById('activation-modal');
+            const closeBtn = document.getElementById('activation-close-btn');
+            
+            if (closeBtn) {
+                if (forced) {
+                    closeBtn.classList.add('hidden'); // Oculta botão de fechar se expirado
+                } else {
+                    closeBtn.classList.remove('hidden'); // Exibe se aberto manualmente
+                }
             }
-
-            checkAppAccess();
+            modal.classList.remove('hidden');
+            updateActivationInfo();
         }
 
         function toggleActivationModal() {
+            if (isAppForcedBlocked) return; // Impede fechar se bloqueado
             const modal = document.getElementById('activation-modal');
             modal.classList.toggle('hidden');
             if (!modal.classList.contains('hidden')) {
+                isAppForcedBlocked = false;
+                const closeBtn = document.getElementById('activation-close-btn');
+                if (closeBtn) closeBtn.classList.remove('hidden');
                 updateActivationInfo();
             }
         }
@@ -717,51 +632,63 @@
             const cleanName = username.replace(/\s+/g, '');
             const charCount = cleanName.length;
 
-            const targetDate = new Date();
+            // Alinhando o cálculo com a data de expiração real do gerador
+            const currentExp = localStorage.getItem(EXPIRATION_KEY);
+            const baseDate = (currentExp && parseInt(currentExp) > Date.now()) ? new Date(parseInt(currentExp)) : new Date();
+            
+            const targetDate = new Date(baseDate);
             targetDate.setDate(targetDate.getDate() + 30);
+
             const day = targetDate.getDate();
             const month = targetDate.getMonth() + 1;
             const year = targetDate.getFullYear();
 
             const sum = charCount + day + month + year;
-            const expectedCode = Math.pow(sum, 3).toString().padStart(10, '0');
+            const expectedCode = String(Math.pow(sum, 3)); // Sem padStart para bater com o gerador
 
             if (codeInput === expectedCode || codeInput === "1234567890") {
                 localStorage.setItem(EXPIRATION_KEY, targetDate.getTime().toString());
+                isAppForcedBlocked = false;
                 document.getElementById('activation-modal').classList.add('hidden');
                 alert("Aplicativo ativado com sucesso por mais 30 dias!");
                 checkAppAccess();
             } else {
-                alert("Código de ativação inválido. Verifique o comprovante enviado para excellington@gmail.com.");
+                alert("Código de ativação inválido. Verifique os dados informados.");
             }
+        }
+
+        function checkAccessBeforeAction() {
+            const expiration = localStorage.getItem(EXPIRATION_KEY);
+            const now = Date.now();
+            if (!expiration || now > parseInt(expiration)) {
+                openActivationModal(true);
+                return false;
+            }
+            return true;
         }
 
         function toggleTermsModal() {
             document.getElementById('terms-modal').classList.toggle('hidden');
         }
-        
 
-
-
-        
         let currentOperation = '+';
         let travelDirection = 'future';
 
-        // Conversion factors to seconds
         const unitToSeconds = {
             second: 1,
             minute: 60,
             hour: 3600,
             day: 86400,
-            week: 604800,        // 7 days
-            month: 2592000,      // 30 days
-            bimester: 5184000,   // 60 days
-            trimester: 7776000,  // 90 days
-            semester: 15552000,  // 180 days
-            year: 31536000       // 365 days
+            week: 604800,
+            month: 2592000,
+            bimester: 5184000,
+            trimester: 7776000,
+            semester: 15552000,
+            year: 31536000
         };
 
         function switchTab(tabName) {
+            if (!checkAccessBeforeAction()) return;
             const calcBtn = document.getElementById('tab-calculator-btn');
             const datesBtn = document.getElementById('tab-dates-btn');
             const ttBtn = document.getElementById('tab-timetravel-btn');
@@ -788,6 +715,7 @@
         }
 
         function setOperation(op) {
+            if (!checkAccessBeforeAction()) return;
             currentOperation = op;
             const btnAdd = document.getElementById('op-add');
             const btnSub = document.getElementById('op-sub');
@@ -815,6 +743,7 @@
         }
 
         function calculateTime() {
+            if (!checkAccessBeforeAction()) return;
             const val1 = parseFloat(document.getElementById('val1').value) || 0;
             const unit1 = document.getElementById('unit1').value;
             const val2 = parseFloat(document.getElementById('val2').value) || 0;
@@ -877,6 +806,7 @@
         }
 
         function calculateDateDifference() {
+            if (!checkAccessBeforeAction()) return;
             const startStr = document.getElementById('diff-start-date').value;
             const endStr = document.getElementById('diff-end-date').value;
             const inclusive = document.getElementById('diff-inclusive').checked;
@@ -911,6 +841,7 @@
         }
 
         function calculateFinalDate() {
+            if (!checkAccessBeforeAction()) return;
             const startStr = document.getElementById('atest-start-date').value;
             const daysCount = parseInt(document.getElementById('atest-days').value) || 0;
             const subtractOne = document.getElementById('atest-subtract-one').checked;
@@ -944,6 +875,7 @@
         }
 
         function setTravelDirection(dir) {
+            if (!checkAccessBeforeAction()) return;
             travelDirection = dir;
             const btnFuture = document.getElementById('dir-future-btn');
             const btnPast = document.getElementById('dir-past-btn');
@@ -966,6 +898,7 @@
         }
 
         function executeTimeTravel() {
+            if (!checkAccessBeforeAction()) return;
             const refInput = document.getElementById('tt-ref-datetime').value;
             const amount = parseFloat(document.getElementById('tt-amount').value) || 0;
             const unit = document.getElementById('tt-unit').value;
@@ -1054,7 +987,6 @@
             console.log(title + ": " + text);
         }
 
-        // Set default dates and datetime on load
         window.onload = function() {
             const now = new Date();
             const year = now.getFullYear();
@@ -1073,7 +1005,6 @@
             if(document.getElementById('atest-start-date')) document.getElementById('atest-start-date').value = todayStr;
             if(document.getElementById('tt-ref-datetime')) document.getElementById('tt-ref-datetime').value = localDatetime;
 
-            // Run initial calculations
             calculateTime();
             executeTimeTravel();
         };
