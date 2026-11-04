@@ -560,19 +560,27 @@
 
         function checkAppAccess() {
             const username = localStorage.getItem(USERNAME_KEY);
-            if (!username) {
+            const usernameModal = document.getElementById('username-modal');
+            const activationModal = document.getElementById('activation-modal');
+
+            // 1. VERIFICAÇÃO PRIMÁRIA: Se não houver nome cadastrado, exibe obrigatoriamente a tela de identificação
+            if (!username || username.trim() === '') {
+                if (activationModal) activationModal.classList.add('hidden');
                 document.getElementById('cancel-username-btn').classList.add('hidden');
                 document.getElementById('register-username-input').value = '';
-                document.getElementById('username-modal').classList.remove('hidden');
+                if (usernameModal) usernameModal.classList.remove('hidden');
                 return false;
             }
 
             const userTag = document.getElementById('user-display-tag');
             const editBtn = document.getElementById('edit-user-btn');
-            userTag.textContent = `• Usuário: ${username}`;
-            userTag.classList.remove('hidden');
-            editBtn.classList.remove('hidden');
+            if (userTag) {
+                userTag.textContent = `• Usuário: ${username}`;
+                userTag.classList.remove('hidden');
+            }
+            if (editBtn) editBtn.classList.remove('hidden');
 
+            // 2. Validação da Licença / Expiração (somente para usuários já cadastrados)
             const expiration = readStoredExpiration();
             const now = Date.now();
 
@@ -678,13 +686,12 @@
             }, 1500);
         }
 
-                function validateActivationCode() {
+        function validateActivationCode() {
             const codeInput = document.getElementById('activation-code-input').value.trim();
             const username = localStorage.getItem(USERNAME_KEY) || '';
             const cleanName = username.replace(/\s+/g, '');
             const charCount = cleanName.length;
 
-            // CORREÇÃO: Utiliza estritamente a data de expiração atualmente armazenada (exibida na tela)
             const storedExpiration = readStoredExpiration();
             if (!storedExpiration) {
                 alert("Data de expiração não encontrada.");
@@ -700,7 +707,6 @@
             const expectedCode = String(Math.pow(baseSum, 3));
 
             if (codeInput === expectedCode || codeInput === "1234567890") {
-                // Calcula a nova data de expiração (30 dias à frente a partir de agora ou da expiração anterior)
                 const baseTime = storedExpiration > Date.now() ? storedExpiration : Date.now();
                 const targetDate = new Date(baseTime + (30 * 24 * 60 * 60 * 1000));
                 targetDate.setHours(23, 59, 59, 999);
@@ -715,9 +721,6 @@
             }
         }
 
-
-
-        
         function checkAccessBeforeAction() {
             const expiration = readStoredExpiration();
             const now = Date.now();
