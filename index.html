@@ -563,7 +563,7 @@
             const usernameModal = document.getElementById('username-modal');
             const activationModal = document.getElementById('activation-modal');
 
-            // 1. VERIFICAÇÃO PRIMÁRIA: Se não houver nome cadastrado, exibe obrigatoriamente a tela de identificação
+            // 1. VERIFICAÇÃO PRIMÁRIA OBRIGATÓRIA: Se não houver nome cadastrado, exibe estritamente a modal de identificação
             if (!username || username.trim() === '') {
                 if (activationModal) activationModal.classList.add('hidden');
                 document.getElementById('cancel-username-btn').classList.add('hidden');
@@ -580,12 +580,12 @@
             }
             if (editBtn) editBtn.classList.remove('hidden');
 
-            // 2. Validação da Licença / Expiração (somente para usuários já cadastrados)
+            // 2. Validação da Licença / Expiração (somente se o usuário já estiver cadastrado)
             const expiration = readStoredExpiration();
             const now = Date.now();
 
             if (!expiration || now > expiration) {
-                openActivationModal(true); // Bloqueio forçado por expiração
+                openActivationModal(true); // Bloqueio forçado por expiração real
                 return false;
             }
 
@@ -612,7 +612,8 @@
             localStorage.setItem(USERNAME_KEY, nameInput);
             closeUsernameModal();
 
-            if (isFirstTime && readStoredExpiration() === null) {
+            // Se for o primeiro cadastro ou a expiração estiver vazia, define os 30 dias iniciais de teste
+            if (isFirstTime || readStoredExpiration() === null) {
                 const initialTrial = Date.now() + (30 * 24 * 60 * 60 * 1000);
                 localStorage.setItem(EXPIRATION_KEY, String(initialTrial));
             }
