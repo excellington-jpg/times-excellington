@@ -563,7 +563,7 @@
             const usernameModal = document.getElementById('username-modal');
             const activationModal = document.getElementById('activation-modal');
 
-            // 1. VERIFICAÇÃO PRIMÁRIA OBRIGATÓRIA: Se não houver nome cadastrado, exibe estritamente a modal de identificação
+            // 1. PRIORIDADE ABSOLUTA: Se não houver nome cadastrado, exibe obrigatoriamente a identificação e fecha o de ativação
             if (!username || username.trim() === '') {
                 if (activationModal) activationModal.classList.add('hidden');
                 document.getElementById('cancel-username-btn').classList.add('hidden');
@@ -580,12 +580,12 @@
             }
             if (editBtn) editBtn.classList.remove('hidden');
 
-            // 2. Validação da Licença / Expiração (somente se o usuário já estiver cadastrado)
+            // 2. Validação da Licença / Expiração (somente executada se o usuário já estiver cadastrado)
             const expiration = readStoredExpiration();
             const now = Date.now();
 
             if (!expiration || now > expiration) {
-                openActivationModal(true); // Bloqueio forçado por expiração real
+                openActivationModal(true); // Bloqueio por expiração real
                 return false;
             }
 
@@ -600,6 +600,10 @@
         }
 
         function closeUsernameModal() {
+            const username = localStorage.getItem(USERNAME_KEY);
+            if (!username || username.trim() === '') {
+                return; // Impede fechar se não houver usuário cadastrado
+            }
             document.getElementById('username-modal').classList.add('hidden');
         }
 
@@ -610,9 +614,9 @@
 
             const isFirstTime = !localStorage.getItem(USERNAME_KEY);
             localStorage.setItem(USERNAME_KEY, nameInput);
-            closeUsernameModal();
+            document.getElementById('username-modal').classList.add('hidden');
 
-            // Se for o primeiro cadastro ou a expiração estiver vazia, define os 30 dias iniciais de teste
+            // Define os 30 dias iniciais de teste caso seja o primeiro acesso
             if (isFirstTime || readStoredExpiration() === null) {
                 const initialTrial = Date.now() + (30 * 24 * 60 * 60 * 1000);
                 localStorage.setItem(EXPIRATION_KEY, String(initialTrial));
@@ -647,17 +651,6 @@
                 if (closeBtn) closeBtn.classList.remove('hidden');
                 updateActivationInfo();
             }
-        }
-
-        function getRenewalTargetDate() {
-            const storedExpiration = readStoredExpiration();
-            const baseTime = (storedExpiration !== null && storedExpiration > Date.now()) 
-                ? storedExpiration 
-                : Date.now();
-
-            const targetDate = new Date(baseTime + (30 * 24 * 60 * 60 * 1000));
-            targetDate.setHours(23, 59, 59, 999);
-            return targetDate;
         }
 
         function updateActivationInfo() {
